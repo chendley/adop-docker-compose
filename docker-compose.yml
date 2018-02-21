@@ -4,7 +4,8 @@
 proxy:
   container_name: proxy
   restart: always
-  image: chendley/adop-nginx:latest
+  image: accenture/adop-nginx:0.3.2
+  #build: ../images/docker-nginx/
   net: ${CUSTOM_NETWORK_NAME}
   ports:
     - "80:80"
@@ -166,7 +167,7 @@ sensu-redis:
 sonar-mysql:
   container_name: sonar-mysql
   restart: always
-  image: mariadb:latest
+  image: mysql:5.6.25
   net: ${CUSTOM_NETWORK_NAME}
   expose:
     - "3306"
@@ -179,7 +180,7 @@ sonar-mysql:
 sonar:
   container_name: sonar
   restart: always
-  image: chendley/adop-sonar:lts
+  image: accenture/adop-sonar:0.3.5
   #build: ../images/docker-sonar/
   net: ${CUSTOM_NETWORK_NAME}
   expose:
@@ -203,7 +204,7 @@ sonar:
 jenkins:
   container_name: jenkins
   restart: always
-  image: chendley/adop-jenkins:lts
+  image: accenture/adop-jenkins:0.2.6
   #build: ../images/docker-jenkins/
   net: ${CUSTOM_NETWORK_NAME}
   ports:
@@ -261,7 +262,7 @@ jenkins:
 jenkins-slave:
   container_name: jenkins-slave
   restart: always
-  image: accenture/adop-jenkins-slave:latest
+  image: accenture/adop-jenkins-slave:0.1.4
   net: ${CUSTOM_NETWORK_NAME}
   privileged: true
   environment:
@@ -304,7 +305,7 @@ selenium-node-firefox:
 nexus:
   container_name: nexus
   restart: always
-  image:  chendley/adop-nexus:latest
+  image:  accenture/adop-nexus:0.1.4
   net: ${CUSTOM_NETWORK_NAME}
   expose:
     - "8081"
@@ -346,14 +347,14 @@ ldap-phpadmin:
     LDAP_SERVER_BIND_ID: "${LDAP_ADMIN},${LDAP_FULL_DOMAIN}"
     LDAP_SERVER_BASE_DN: "${LDAP_FULL_DOMAIN}"
 
-    #registry:
-    # container_name: registry
-    #restart: always
-    #image: registry:2.5.1
-    #net: ${CUSTOM_NETWORK_NAME}
-    #expose:
-    #- "5000"
-    #environment:
-    #REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
-    #REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry/fullchain.pem
-    #REGISTRY_HTTP_TLS_KEY: /certs/registry/privkey.pem
+registry:
+  container_name: registry
+  restart: always
+  image: registry:2.5.1
+  net: ${CUSTOM_NETWORK_NAME}
+  expose:
+    - "5000"
+  environment:
+    REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry/fullchain.pem
+    REGISTRY_HTTP_TLS_KEY: /certs/registry/privkey.pem
