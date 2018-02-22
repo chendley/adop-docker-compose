@@ -204,7 +204,7 @@ sonar:
 jenkins:
   container_name: jenkins
   restart: always
-  image: chendley/adop-jenkins:lts
+  image: chendley/adop-jenkins:js
   #build: ../images/docker-jenkins/
   net: ${CUSTOM_NETWORK_NAME}
   ports:
