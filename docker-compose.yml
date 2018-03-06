@@ -349,13 +349,13 @@ ldap-phpadmin:
 
 
 registry:
- 10   container_name: registry
- 11   restart: always
- 12   image: registry:2.5.1
- 13   net: ${CUSTOM_NETWORK_NAME}
- 14   expose:
- 15     - "5000"
- 16   environment:
- 17     REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
- 18     REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry/fullchain.pem
- 19     REGISTRY_HTTP_TLS_KEY: /certs/registry/privkey.pem
+    container_name: registry
+    restart: always
+    image: registry:2.5.1
+    net: ${CUSTOM_NETWORK_NAME}
+    expose:
+        - "5000"
+    environment:
+        REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+        REGISTRY_HTTP_TLS_CERTIFICATE: /certs/registry/fullchain.pem
+        REGISTRY_HTTP_TLS_KEY: /certs/registry/privkey.pem
