@@ -4,7 +4,7 @@
 proxy:
   container_name: proxy
   restart: always
-  image: chendley/adop-nginx:latest
+  image: chendley/adop-nginx:lts
   #build: ../images/docker-nginx/
   net: ${CUSTOM_NETWORK_NAME}
   ports:
@@ -246,9 +246,9 @@ jenkins:
     SONAR_ADDITIONAL_PROPS: ""
     SONAR_RUNNER_VERSION: "2.4"
     ANT_VERSION: "1.9.4"
-    MAVEN_VERSION: "3.0.5"
-    NODEJS_VERSION: "6.9.4"
-    NODEJS_GLOBAL_PACKAGES: "grunt-cli@~0.1.13 bower@~1.3.12 plato@~1.2.1"
+    MAVEN_VERSION: "3.5.0"
+    NODEJS_VERSION: "6.11.0"
+    NODEJS_GLOBAL_PACKAGES: "npm@5.1.0 serverless@1.17.0 typescript@2.4 tslint"
     NODEJS_PACKAGES_REFRESH_HOURS: "72"
     GIT_GLOBAL_CONFIG_NAME: "ADOP Jenkins"
     GROOVY_VERSION: "2.4.8"
@@ -262,11 +262,11 @@ jenkins:
 jenkins-slave:
   container_name: jenkins-slave
   restart: always
-  image: accenture/adop-jenkins-slave:0.1.4
+  image: accenture/adop-jenkins-slave:latest
   net: ${CUSTOM_NETWORK_NAME}
   privileged: true
   environment:
-    SLAVE_LABELS: "aws ldap java8 docker"
+    SLAVE_LABELS: "azure ldap java8 docker"
     SWARM_PASSWORD: ${PASSWORD_JENKINS}
     SLAVE_EXECUTORS: ${SLAVE_EXECUTORS}
     INITIAL_ADMIN_USER: ${INITIAL_ADMIN_USER}
