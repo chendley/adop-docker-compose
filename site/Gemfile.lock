@@ -263,7 +263,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-pages (>= 207)
+  github-pages (>= 214)
 
 BUNDLED WITH
    1.17.3
